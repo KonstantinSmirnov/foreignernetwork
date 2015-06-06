@@ -1,0 +1,47 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// There are my custome styles
+
+.container {
+  max-width: 980px;
+}
+
+/* footer */
+
+footer {
+	margin-top: 45px;
+	padding-bottom: 45px;
+	padding-top: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-top: 1px solid #eaeaea;
+	color: #999;
+}
+
+footer a {
+	color: #555;
+}
+
+footer small {
+	float: left;
+}
+
+footer ul {
+	float: right;
+	list-style: none;
+}
+
+footer ul li {
+	float: left;
+	margin-left: 10px;
+}
+
+
+
+
+
+
+
+

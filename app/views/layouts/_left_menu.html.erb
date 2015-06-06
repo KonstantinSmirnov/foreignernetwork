@@ -1,0 +1,38 @@
+
+    <div class="list-group">
+
+      <%= link_to current_user, class: "list-group-item #{ "active" if params[:controller] == 'users' && @user == current_user }" do %>
+        <i class="fa fa-comment-o"></i>
+          My Profile
+      <% end %>
+
+      <%= link_to friends_path, class: "list-group-item #{ "active" if params[:controller] == 'friendships' && params[:action] == 'index' }" do %>
+          <i class="fa fa-comment-o"></i>
+            My Friends
+      <% end %>
+
+
+      <a href="#" class="list-group-item">
+        <i class="fa fa-search"></i> My Guests <span class="badge">14</span>
+      </a>
+      <a href="#" class="list-group-item">
+        <i class="fa fa-user"></i> My Messages
+      </a>
+      <a href="#" class="list-group-item">
+        <i class="fa fa-folder-open-o"></i> My Fotos
+      </a>
+      <a href="#" class="list-group-item">
+        <i class="fa fa-bar-chart-o"></i> My Groups <span class="badge">14</span>
+      </a>
+
+      <%= link_to root_path, class: "list-group-item #{ "active" if params[:controller] == 'static_pages' && params[:action] == 'index'}" do %>
+          <i class="fa fa-comment-o"></i>
+          My News
+      <% end %>
+
+      <a href="#" class="list-group-item">
+        <i class="fa fa-envelope"></i> Settings
+      </a>
+    </div>
+
+

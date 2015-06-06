@@ -1,0 +1,27 @@
+<% provide(:title, 'My friends') %>
+
+<h1>Your friends</h1>
+
+<% @friends.each do |friend| %>
+
+    <%= friend.name %> | <%= link_to 'Delete from friends', unfriend_path(:id => friend.id ), :method => :delete %> <br>
+
+<% end %>
+
+
+<h1>Sent friendship requests to</h1>
+
+<% @friend_requests_sent.each do |friend| %>
+
+    <%= friend.id %> <%= friend.name %> | <%= link_to 'Delete', unfriend_path(:id => friend.id ), :method => :delete %> <br>
+
+<% end %>
+
+<h1>Recieved friendship requests from</h1>
+
+<% @friend_requests_received.each do |friend| %>
+
+    <%= friend.id %> <%= friend.name %> <%= link_to 'Accept', add_friend_path(:friend_id => friend.id) %> <br>
+
+<% end %>
+

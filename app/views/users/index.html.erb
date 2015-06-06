@@ -1,0 +1,59 @@
+
+
+
+
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <% @users.each do |u| %>
+
+      <div class="col-md-3 col-sm-6 well">
+        <!-- Restaurant Item -->
+        <div class="item">
+          <!-- Item's image -->
+
+          <%= image_tag( u.avatar.url(:small), class: "img-rounded") %>
+
+          <!-- Item details -->
+          <div class="item-dtls">
+            <!-- product title -->
+            <h4><%= link_to "#{u.name}", u %></h4>
+          </div>
+
+
+
+          <%= link_to add_friend_path(:friend_id => u.id),
+                      class: "btn btn-success btn-xs #{"disabled btn-info" if friends_request_sent?(u) }" do %>
+
+              <% if friends?(u) %>
+                  Friends
+                  <span class="glyphicon glyphicon-user"></span>
+              <% elsif friends_request_received?(u) %>
+                  Accept
+
+                  <%= link_to '#', class: "btn btn-danger btn-xs" do %>
+                      Decline
+                  <% end %>
+
+              <% elsif friends_request_sent?(u) %>
+                  Request sent
+                  <span class="glyphicon glyphicon-ok"></span>
+              <% else %>
+                Add friend
+                  <span class="glyphicon glyphicon-plus"></span>
+              <% end %>
+
+          <% end %>
+
+
+
+
+              </div>
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+

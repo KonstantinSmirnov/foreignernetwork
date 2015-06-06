@@ -1,0 +1,97 @@
+<% provide(:title, @user.name) %>
+
+<!-- <div class="well">
+  <p>О чем ты сейчас думаешь?</p>
+</div> -->
+
+<div class="row" xmlns="http://www.w3.org/1999/html">
+  <div class="col-md-4">
+    <%= image_tag(@user.avatar.url(:medium), class: "img-rounded") %>
+
+    <br><br>
+
+    <div class="list-group">
+
+    <% if @user == current_user %>
+
+          <p>Fotos with me</p>
+          <p>Posts with me</p>
+
+          <h4 class="heading-xs">Profile is filled on: <span class="pull-right">64%</span></h4>
+          <div class="progress progress-u progress-xxs margin-bottom-40">
+            <div style="width: 64%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="64" role="progressbar" class="progress-bar progress-bar-dark">
+            </div>
+          </div>
+          <p>Add contact info</p>
+          <p>Add info about education</p>
+          <p>Add your hobbies</p>
+
+
+    <% else %>
+
+
+          <% if friends?(@user) %>
+            <p class="list-group-item">Friends</p>
+          <% elsif friends_request_sent?(@user) %>
+            <p class="list-group-item">Friend request sent</p>
+          <% elsif friends_request_received?(@user) %>
+              <%= link_to add_friend_path(:friend_id => @user.id), class: "list-group-item" do %>
+                  Accept friend
+              <% end %>
+              <%= link_to '#', class: "list-group-item" do %>
+                  Decline
+              <% end %>
+          <% else %>
+              <%= link_to add_friend_path(:friend_id => @user.id), class: "list-group-item" do %>
+                  Send friend request
+              <% end %>
+          <% end %>
+
+
+
+      <a href="#" class="list-group-item">
+        <i class="fa fa-search"></i> Send a message
+      </a>
+
+          <% end %>
+
+
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <h4><%= @user.name %>, 25 years</h4>
+    <p>Seattle, Washington, United States</p>
+
+    <p>Online</p>
+    <p>Speaks: English, French</p>
+    <p>Learning: Russian, Spanish</p>
+    <p>Looking for: Lenguage exchange <br> Friendship <br> Voyages</p>
+
+    <p>Joined 2 months ago</p>
+  </div>
+</div>
+
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea class="form-control" rows="3" placeholder="Write a message..."></textarea>
+      </br>
+      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-info">Post</button>
+      <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-user" href="#" title="Add user"></a>
+      <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-picture" href="#" title="Add image"></a>
+      <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-map-marker" href="#" title="Add place"></a>
+
+    </div>
+  </div>
+
+
+<%= render 'layouts/post' %>
+
+
+<%= render 'layouts/post' %>
+
+
+<%= render 'layouts/post' %>
+
