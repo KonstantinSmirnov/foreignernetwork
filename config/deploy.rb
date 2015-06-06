@@ -29,7 +29,8 @@ set :rbenv_roles, :all
 SSHKit.config.command_map[:rake]  = "bundle exec rake"
 SSHKit.config.command_map[:rails] = "bundle exec rails"
 
-set :linked_files, %w{.env config/database.yml}
+#files with configuration which we do not store in git we put on the server manually
+set :linked_files, %w{.env database.yml}
 set :linked_dirs, %w{bin log tmp public/assets public/sites public/system}
 
 set :file_permissions_roles, :all
