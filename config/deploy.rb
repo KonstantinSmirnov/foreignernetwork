@@ -29,13 +29,6 @@ set :rbenv_roles, :all
 SSHKit.config.command_map[:rake]  = "bundle exec rake"
 SSHKit.config.command_map[:rails] = "bundle exec rails"
 
-    desc <<-DESC
-      [internal] Updates the symlink for database.yml file to the just deployed release.
-    DESC
-    task :symlink do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    end
-
 set :linked_files, %w{.env}
 set :linked_dirs, %w{bin log tmp public/assets public/sites public/system}
 
@@ -45,3 +38,12 @@ set :file_permissions_users, ["deployuser"]
 set :file_permissions_chmod_mode, "0770"
 
 after "deploy:updated", "deploy:set_permissions:chmod"
+
+namespace :deploy do
+  desc <<-DESC
+    [internal] Updates the symlink for database.yml file to the just deployed release.
+  DESC
+  task :symlink do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
+end
