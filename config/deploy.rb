@@ -38,3 +38,7 @@ set :file_permissions_users, ["deployuser"]
 set :file_permissions_chmod_mode, "0770"
 
 after "deploy:updated", "deploy:set_permissions:chmod"
+
+task :finalize_update
+  ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
+end
