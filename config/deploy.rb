@@ -39,6 +39,8 @@ set :file_permissions_chmod_mode, "0770"
 
 after "deploy:updated", "deploy:set_permissions:chmod"
 
-task :finalize_update
-  ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
+task :finalize_update, :except => {:no_release => true} do
+  run <<-CMD
+    ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
+  CMD
 end
