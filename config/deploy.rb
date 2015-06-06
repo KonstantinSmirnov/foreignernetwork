@@ -37,8 +37,6 @@ set :file_permissions_paths, ["/usr/local/rbenv"]
 set :file_permissions_users, ["deployuser"]
 set :file_permissions_chmod_mode, "0770"
 
-after "deploy:updated", "deploy:set_permissions:chmod"
-
 namespace :deploy do
   desc <<-DESC
     [internal] Updates the symlink for database.yml file to the just deployed release.
@@ -47,3 +45,5 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
 end
+
+after "deploy:updated", "deploy:set_permissions:chmod"
