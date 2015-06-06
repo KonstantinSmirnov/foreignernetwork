@@ -29,21 +29,12 @@ set :rbenv_roles, :all
 SSHKit.config.command_map[:rake]  = "bundle exec rake"
 SSHKit.config.command_map[:rails] = "bundle exec rails"
 
-set :linked_files, %w{.env}
+set :linked_files, %w{.env config/database.yml}
 set :linked_dirs, %w{bin log tmp public/assets public/sites public/system}
-
-desc "copy database.yml"
-  task :config_files do
-    source = File.join(Dir.pwd, "config", "database.example.yml")
-    target = File.join(Dir.pwd, "config", "database.yml")
-    FileUtils.cp_r source, target
-  end
 
 set :file_permissions_roles, :all
 set :file_permissions_paths, ["/usr/local/rbenv"]
 set :file_permissions_users, ["deployuser"]
 set :file_permissions_chmod_mode, "0770"
-
-
 
 after "deploy:updated", "deploy:set_permissions:chmod"
