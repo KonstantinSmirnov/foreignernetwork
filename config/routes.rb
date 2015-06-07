@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   match '/accept_friendship',     to: 'friendships#accept',   via: 'get'
   match '/unfriend',              to: 'friendships#destroy',  via: 'delete'
 
+  #match '/post',                  to: 'posts#create',         via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -34,7 +36,9 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :users
+  resources :users do
+    resources :posts
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   # Example resource route with options:

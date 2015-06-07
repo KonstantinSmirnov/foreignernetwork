@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     @users = User.all - @current_user_array
   end
 
+  def post
+
+  end
+
   private
 
     def user_params

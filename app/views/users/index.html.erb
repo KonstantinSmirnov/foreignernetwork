@@ -3,57 +3,53 @@
 
 
 
-
   <div class="container-fluid">
     <div class="row">
       <% @users.each do |u| %>
 
-      <div class="col-md-3 col-sm-6 well">
-        <!-- Restaurant Item -->
-        <div class="item">
-          <!-- Item's image -->
 
-          <%= image_tag( u.avatar.url(:small), class: "img-rounded") %>
+              <div class="col-md-6">
+                <div class="well well-sm">
+                  <div class="media">
+                    <a class="thumbnail pull-left" href="#">
+                      <%= image_tag( u.avatar.url(:small), class: "img-rounded") %>
+                    </a>
+                    <div class="media-body">
+                      <h4><%= link_to "#{u.name}", u %></h4>
+                      <p>
+                        <%= link_to add_friend_path(:friend_id => u.id),
+                                    class: "btn btn-success btn-xs #{"disabled btn-info" if friends_request_sent?(u) }" do %>
 
-          <!-- Item details -->
-          <div class="item-dtls">
-            <!-- product title -->
-            <h4><%= link_to "#{u.name}", u %></h4>
-          </div>
+                            <% if friends?(u) %>
+                                Friends
+                                <span class="glyphicon glyphicon-user"></span>
+                            <% elsif friends_request_received?(u) %>
+                                Accept
 
+                                <%= link_to '#', class: "btn btn-danger btn-xs" do %>
+                                    Decline
+                                <% end %>
 
+                            <% elsif friends_request_sent?(u) %>
+                                Request sent
+                                <span class="glyphicon glyphicon-ok"></span>
+                            <% else %>
+                                Add friend
+                                <span class="glyphicon glyphicon-plus"></span>
+                            <% end %>
 
-          <%= link_to add_friend_path(:friend_id => u.id),
-                      class: "btn btn-success btn-xs #{"disabled btn-info" if friends_request_sent?(u) }" do %>
-
-              <% if friends?(u) %>
-                  Friends
-                  <span class="glyphicon glyphicon-user"></span>
-              <% elsif friends_request_received?(u) %>
-                  Accept
-
-                  <%= link_to '#', class: "btn btn-danger btn-xs" do %>
-                      Decline
-                  <% end %>
-
-              <% elsif friends_request_sent?(u) %>
-                  Request sent
-                  <span class="glyphicon glyphicon-ok"></span>
-              <% else %>
-                Add friend
-                  <span class="glyphicon glyphicon-plus"></span>
-              <% end %>
-
-          <% end %>
-
-
-
-
+                        <% end %>
+                        <br><br>
+                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Remove</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+
       </div>
 
       <% end %>
-
-    </div>
-  </div>
 

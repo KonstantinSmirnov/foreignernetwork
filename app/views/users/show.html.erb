@@ -72,13 +72,16 @@
   </div>
 </div>
 
+<%= form_for [@user, Post.new] do |f| %>
+
 
 
   <div class="row">
     <div class="col-sm-12">
-      <textarea class="form-control" rows="3" placeholder="Write a message..."></textarea>
+      <%= f.text_area :text, class: "form-control", :rows => "3", :placeholder => "Write a message..." %>
+      <%= f.hidden_field :author_id, :value => current_user.id %>
       </br>
-      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-info">Post</button>
+      <%= f.submit "Post", class: "btn btn-primary pull-right" %>
       <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-user" href="#" title="Add user"></a>
       <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-picture" href="#" title="Add image"></a>
       <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-map-marker" href="#" title="Add place"></a>
@@ -86,12 +89,33 @@
     </div>
   </div>
 
+<% end %>
 
-<%= render 'layouts/post' %>
+<br>
 
+<div class="row">
 
-<%= render 'layouts/post' %>
+<% @user.posts.reverse.each do |p| %>
 
+<div class="container-fluid">
+     <span class="chat-img pull-left">
+        <%= image_tag(p.author.avatar.url(:small), class: "img-rounded") %>
+     </span>
 
-<%= render 'layouts/post' %>
+     <div class="col-md-10 chat-body clearfix">
+       <strong class="primary-font"><%= link_to "#{p.author.name}", p.author %></strong>
+
+       <small class="pull-right text-muted">
+          <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(p.created_at) %> ago
+       </small>
+
+        <p><%= p.text %></p>
+
+     </div>
+</div>
+    <br>
+
+<% end %>
+
+</div>
 

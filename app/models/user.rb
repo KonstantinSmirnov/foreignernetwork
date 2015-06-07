@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
+  has_many :posts, :class_name => "Post", :foreign_key => "user_id"
+  has_many :records, :class_name => "Post", :foreign_key => "author_id"
+
   validates :name, presence: true, length: { maximum: 15 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
@@ -18,7 +21,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   has_attached_file :avatar,
-                    styles: { :small => ["100x100#", :png],
+                    styles: { :small => ["80x80#", :png],
                               :medium => ["214x214>", :png]}, :dependent => :destroy
 
   validates_attachment_file_name :avatar,
