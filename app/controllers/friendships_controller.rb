@@ -24,7 +24,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
-      flash[:success] = "Friend added"
+      #flash[:success] = "Friend added"
       redirect_to request.referrer
     else
       flash[:danger] = "not saved or this user is already added"
@@ -49,8 +49,9 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = current_user.friendships.find_by(user: current_user, friend: params[:id])
     if @friendship.destroy
-      flash[:success] = "destroyed"
-      redirect_to friends_path
+      #wflash[:success] = "destroyed"
+      redirect_to request.referrer
+
     else
       flash[:danger] = 'can not be destroyed'
       redirect_to friends_path

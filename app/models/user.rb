@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :posts, :class_name => "Post", :foreign_key => "user_id"
   has_many :records, :class_name => "Post", :foreign_key => "author_id"
 
-  validates :name, presence: true, length: { maximum: 15 }
+  validates :name, presence: true, length: { maximum: 25 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
 
@@ -21,8 +21,11 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   has_attached_file :avatar,
-                    styles: { :small => ["80x80#", :png],
-                              :medium => ["214x214>", :png]}, :dependent => :destroy
+                    styles: { :small => ["160x160#", :png],
+                              :medium => ["214x214>", :png],
+                              :original => ["600x450>", :png]},
+                    :default_url => "/assets/images/default_:style.png",
+                    :dependent => :destroy
 
   validates_attachment_file_name :avatar,
                                  :matches => [/png\z/, /jpg\z/, /jpeg\z/]

@@ -1,55 +1,15 @@
 
 
+    <%= render 'layouts/users_search_panel' %>
 
 
+  <div class="row">
+    <% @users.each do |u| %>
 
-  <div class="container-fluid">
-    <div class="row">
-      <% @users.each do |u| %>
+        <%= render 'layouts/user_tile', :user => u %>
 
+    <% end %>
 
-              <div class="col-md-6">
-                <div class="well well-sm">
-                  <div class="media">
-                    <a class="thumbnail pull-left" href="#">
-                      <%= image_tag( u.avatar.url(:small), class: "img-rounded") %>
-                    </a>
-                    <div class="media-body">
-                      <h4><%= link_to "#{u.name}", u %></h4>
-                      <p>
-                        <%= link_to add_friend_path(:friend_id => u.id),
-                                    class: "btn btn-success btn-xs #{"disabled btn-info" if friends_request_sent?(u) }" do %>
+  </div>
 
-                            <% if friends?(u) %>
-                                Friends
-                                <span class="glyphicon glyphicon-user"></span>
-                            <% elsif friends_request_received?(u) %>
-                                Accept
-
-                                <%= link_to '#', class: "btn btn-danger btn-xs" do %>
-                                    Decline
-                                <% end %>
-
-                            <% elsif friends_request_sent?(u) %>
-                                Request sent
-                                <span class="glyphicon glyphicon-ok"></span>
-                            <% else %>
-                                Add friend
-                                <span class="glyphicon glyphicon-plus"></span>
-                            <% end %>
-
-                        <% end %>
-                        <br><br>
-                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
-                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Remove</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-      </div>
-
-      <% end %>
-
+    <%= will_paginate @users %>

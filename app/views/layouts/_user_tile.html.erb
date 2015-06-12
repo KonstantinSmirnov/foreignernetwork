@@ -1,0 +1,51 @@
+<div class="col-md-6 row">
+  <div class="col-xs-3 col-sm-3 col-md-4 bg-warning">
+    <%= image_tag( user.avatar.url(:small), class: "img-rounded img-responsive") %>
+
+    <div class="btn-group btn-group-justified" role="group">
+
+      <% if friends?(user) %>
+
+          <%= link_to unfriend_path(:id => user.id), :method => :delete, class: "btn btn-primary btn-xs" do %>
+              Friends <span class="glyphicon glyphicon-ok"></span>
+          <% end %>
+
+      <% elsif friends_request_received?(user) %>
+
+          <%= link_to add_friend_path(:friend_id => user.id), class: "btn btn-success btn-xs" do %>
+              <span class="glyphicon glyphicon-ok"></span>
+          <% end %>
+
+          <%= link_to '#decline', class: "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+
+      <% elsif friends_request_sent?(user) %>
+
+          <%= link_to unfriend_path(:id => user.id), :method => :delete, class: "btn btn-info btn-xs" do %>
+             Waiting <span class="glyphicon glyphicon-time"></span>
+          <% end %>
+
+      <% else %>
+
+          <%= link_to add_friend_path(:friend_id => user.id), class: "btn btn-success btn-xs" do %>
+              Add <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+
+      <% end %>
+
+
+    </div>
+
+    <br>
+
+  </div>
+  <div class="col-xs-8">
+    <h4><%= link_to "#{user.name}", user %></h4>
+    <p>Moscow, 25 years</p>
+    <p><i>There is my quotation, or my status</i></p>
+
+  </div>
+</div>
+
+

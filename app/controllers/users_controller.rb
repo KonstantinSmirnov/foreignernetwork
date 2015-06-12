@@ -19,9 +19,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @current_user_array = []
-    @current_user_array << current_user
-    @users = User.all - @current_user_array
+    #@current_user_array = []
+    #@current_user_array << current_user
+    #@users = User.all - @current_user_array
+    @users = User.paginate(:page => params[:page], :per_page => 6)
+
   end
 
   def post

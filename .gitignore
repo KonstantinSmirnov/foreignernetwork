@@ -23,5 +23,5 @@ doc/
 database.yml
 
 
-# do not copy images
+# do not copy users images
 public/system/users/avatars/*

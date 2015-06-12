@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   match '/friends',               to: 'friendships#index',    via: 'get'
   match '/add_friend',            to: 'friendships#create',   via: 'get'
-  match '/accept_friendship',     to: 'friendships#accept',   via: 'get'
   match '/unfriend',              to: 'friendships#destroy',  via: 'delete'
 
   #match '/post',                  to: 'posts#create',         via: 'get'

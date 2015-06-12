@@ -5,8 +5,8 @@
 </div> -->
 
 <div class="row" xmlns="http://www.w3.org/1999/html">
-  <div class="col-md-4">
-    <%= image_tag(@user.avatar.url(:medium), class: "img-rounded") %>
+  <div class="col-xs-3 col-sm-3 col-md-4">
+    <%= image_tag(@user.avatar.url(:medium), class: "img-rounded img-responsive") %>
 
     <br><br>
 
@@ -50,7 +50,7 @@
 
 
       <a href="#" class="list-group-item">
-        <i class="fa fa-search"></i> Send a message
+        Message
       </a>
 
           <% end %>
@@ -97,25 +97,31 @@
 
 <% @user.posts.reverse.each do |p| %>
 
-<div class="container-fluid">
-     <span class="chat-img pull-left">
-        <%= image_tag(p.author.avatar.url(:small), class: "img-rounded") %>
-     </span>
+  <div class="col-md-12 row">
+    <div class="col-xs-3 col-sm-3 col-md-2 bg-warning">
+      <%= image_tag( p.author.avatar.url(:small), class: "img-rounded img-responsive") %>
 
-     <div class="col-md-10 chat-body clearfix">
-       <strong class="primary-font"><%= link_to "#{p.author.name}", p.author %></strong>
+      <br>
 
-       <small class="pull-right text-muted">
-          <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(p.created_at) %> ago
-       </small>
+    </div>
+    <div class="col-xs-9 col-sm-9 col-md-10">
+      <strong class="primary-font"><%= link_to "#{p.author.name}", p.author %></strong>
 
-        <p><%= p.text %></p>
+      <small class="pull-right text-muted">
+        <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(p.created_at) %> ago
+      </small>
 
-     </div>
-</div>
-    <br>
+
+      <p><%= p.text %></p>
+    </div>
+  </div>
+
 
 <% end %>
+
+
+
+
 
 </div>
 

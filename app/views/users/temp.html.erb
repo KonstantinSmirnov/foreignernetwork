@@ -1,0 +1,70 @@
+This is for Index.html.erb - the list of users in the system
+
+
+<div class="col-md-4">
+  <div class="col-md-6">
+    <%= image_tag( user.avatar.url(:small), class: "img-rounded") %> <br><br>
+
+    <p>
+      <%= link_to add_friend_path(:friend_id => user.id),
+                  class: "btn btn-success btn-xs #{"disabled btn-info" if friends_request_sent?(user) }" do %>
+
+          <% if friends?(user) %>
+              Friends
+              <span class="glyphicon glyphicon-user"></span>
+          <% elsif friends_request_received?(user) %>
+              <%= link_to 'Accept', add_friend_path(:friend_id => user.id), class: "btn btn-success btn-xs" %>
+              <%= link_to 'Decline', '#', class: "btn btn-danger btn-xs" %>
+
+          <% elsif friends_request_sent?(user) %>
+              Requested
+              <span class="glyphicon glyphicon-ok"></span>
+          <% else %>
+              Add friend
+              <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+
+          <%= link_to 'Delete', unfriend_path(:id => user.id ), :method => :delete %> <br>
+
+
+      <% end %>
+      <br><br>
+    </p>
+
+  </div>
+  <div class="col-md-6">
+    <h4><%= link_to "#{user.name}", user %></h4>
+    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+
+  </div>
+</div>
+
+
+
+#Friends list
+
+    <h1>Your friends</h1>
+
+    <% @friends.each do |friend| %>
+
+        <%= friend.name %> | <%= link_to 'Delete from friends', unfriend_path(:id => friend.id ), :method => :delete %> <br>
+
+    <% end %>
+
+
+    <h1>Sent friendship requests to</h1>
+
+    <% @friend_requests_sent.each do |friend| %>
+
+        <%= friend.id %> <%= friend.name %> | <%= link_to 'Delete', unfriend_path(:id => friend.id ), :method => :delete %> <br>
+
+    <% end %>
+
+    <h1>Recieved friendship requests from</h1>
+
+    <% @friend_requests_received.each do |friend| %>
+
+        <%= friend.id %> <%= friend.name %> <%= link_to 'Accept', add_friend_path(:friend_id => friend.id) %> <br>
+
+    <% end %>
+
