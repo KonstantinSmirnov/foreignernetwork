@@ -7,7 +7,7 @@
       <% if friends?(user) %>
 
           <%= link_to unfriend_path(:id => user.id), :method => :delete, class: "btn btn-primary btn-xs" do %>
-              Friends <span class="glyphicon glyphicon-ok"></span>
+              Friends <span class="glyphicon glyphicon-user"></span>
           <% end %>
 
       <% elsif friends_request_received?(user) %>
