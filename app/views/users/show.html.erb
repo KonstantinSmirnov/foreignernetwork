@@ -1,11 +1,11 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, 'User') %>
 
 <!-- <div class="well">
   <p>О чем ты сейчас думаешь?</p>
 </div> -->
 
 <div class="row" xmlns="http://www.w3.org/1999/html">
-  <div class="col-xs-3 col-sm-3 col-md-4">
+  <div class="col-xs-5 col-sm-5 col-md-4">
     <%= image_tag(@user.avatar.url(:medium), class: "img-rounded img-responsive") %>
 
     <br><br>
@@ -59,14 +59,24 @@
     </div>
   </div>
 
-  <div class="col-md-7">
-    <h4><%= @user.name %>, 25 years</h4>
-    <p>Seattle, Washington, United States</p>
+  <div class="col-xs-6 col-sm-6 col-md-7">
+    <h4>
+      <%= @user.name %> <%= @user.lastname %>
+    </h4>
+  </div>
+  <div class="col-xs-1 col-sm-1 col-md-1">
+    <%= link_to "", edit_user_path(@user), class: "pull-right btn glyphicon glyphicon-pencil" %>
+  </div>
+  <div class="col-md-8">
+    <hr>
+    <p>Country: <%= @user.country.countryname %></p>
+    <p>City:<%= @user.city.cityname %></p>
+    <p>Gender: <%= @user.gender.gendername %></p>
+    <p>Relationship: <%= @user.relationship.relationshipname %></p>
 
-    <p>Online</p>
     <p>Speaks: English, French</p>
     <p>Learning: Russian, Spanish</p>
-    <p>Looking for: Lenguage exchange <br> Friendship <br> Voyages</p>
+    <p>Looking for: Language exchange <br> Friendship <br> Voyages</p>
 
     <p>Joined 2 months ago</p>
   </div>
@@ -98,7 +108,7 @@
 <% @user.posts.reverse.each do |p| %>
 
   <div class="col-md-12 row">
-    <div class="col-xs-3 col-sm-3 col-md-2 bg-warning">
+    <div class="col-xs-3 col-sm-3 col-md-2">
       <%= image_tag( p.author.avatar.url(:small), class: "img-rounded img-responsive") %>
 
       <br>

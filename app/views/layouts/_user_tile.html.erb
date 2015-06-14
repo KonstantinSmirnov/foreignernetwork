@@ -1,5 +1,5 @@
 <div class="col-md-6 row">
-  <div class="col-xs-3 col-sm-3 col-md-4 bg-warning">
+  <div class="col-xs-3 col-sm-3 col-md-4">
     <%= image_tag( user.avatar.url(:small), class: "img-rounded img-responsive") %>
 
     <div class="btn-group btn-group-justified" role="group">
@@ -41,7 +41,7 @@
 
   </div>
   <div class="col-xs-8">
-    <h4><%= link_to "#{user.name}", user %></h4>
+    <h4><%= link_to "#{user.name} #{user.lastname}", user %></h4>
     <p>Moscow, 25 years</p>
     <p><i>There is my quotation, or my status</i></p>
 

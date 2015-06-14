@@ -10,8 +10,21 @@
         <%= render 'shared/error_messages' %>
 
         <div class="form-group">
-            <%= f.label :name, "Username" %>
+            <%= f.label :name, "Name" %>
             <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :lastname, "Lastname" %>
+            <%= f.text_field :lastname, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.fields_for :gender do |u| %>
+              <%= u.label :gender_id, "Gender" %>
+              <%= u.collection_select :gender_id, Gender.order(:id),
+                                          :id, :gendername, {}, {class: "form-control"} %>
+          <% end %>
         </div>
 
         <div class="form-group">

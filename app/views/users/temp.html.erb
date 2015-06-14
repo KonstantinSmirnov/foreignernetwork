@@ -68,3 +68,42 @@ This is for Index.html.erb - the list of users in the system
 
     <% end %>
 
+
+
+
+
+<div class="form-group">
+  <%= f.fields_for :gender do |u| %>
+      <dt><%= u.label :gender_id, "Gender" %></dt>
+      <dd><%= u.collection_select :gender_id, Gender.order(:id),
+                                  :id, :gendername, {}, {class: "form-control"} %></dd>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <dt><%= f.label :relationship_id, "Relationship" %></dt>
+  <dd><%= f.collection_select :relationship_id, Relationship.order(:id),
+                              :id, :relationshipname, {}, {class: "form-control"} %></dd>
+</div>
+
+<div class="form-group">
+  <%= f.fields_for :userinfo do |u| %>
+      <dt><%= u.label :birthday, "Birthday" %></dt>
+      <dd><%= u.date_select :birthday, {:start_year => Time.now.year - 100}, {class: "form-control"} %></dd>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <dt><%= f.label :countru_id, "Country" %></dt>
+
+  <dd><%= f.collection_select :country_id, Country.order(:id),
+                              :id, :countryname, {}, {class: "form-control"} %></dd>
+
+</div>
+
+<div class="form-group">
+  <%= f.fields_for :city do |city| %>
+      <dt><%= city.label :cityname, "City" %></dt>
+      <dd><%= city.text_field :cityname, class: "form-control" %></dd>
+  <% end %>
+</div>

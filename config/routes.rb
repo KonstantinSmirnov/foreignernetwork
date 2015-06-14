@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-
-
-
-
-
+  get 'settings/index'
 
   match '/signup',                to: 'users#new',            via: 'get'
   match '/signin',                to: 'sessions#new',         via: 'get'
@@ -14,6 +10,8 @@ Rails.application.routes.draw do
 
   match '/users',                 to: 'users#index',          via: 'get'
   match '/about',                 to: 'static_pages#about',   via: 'get'
+
+
 
   match '/friends',               to: 'friendships#index',    via: 'get'
   match '/add_friend',            to: 'friendships#create',   via: 'get'
@@ -36,6 +34,10 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :users do
+    member do
+      patch :update_name
+      patch :update_userinfo
+    end
     resources :posts
   end
   resources :sessions, only: [:new, :create, :destroy]

@@ -75,3 +75,6 @@ gem 'paperclip', '~> 4.1.1'
 # for automatic pagination
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
+
+# for all Countries/States/Cities
+gem 'city-state'

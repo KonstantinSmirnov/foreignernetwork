@@ -12,4 +12,8 @@ module FriendshipsHelper
     current_user.inverse_friendships.find_by(:user => user)
   end
 
+  def friend_requests_received_quantity
+    current_user.inverse_friendships.count - current_user.friendships.count
+  end
+
 end

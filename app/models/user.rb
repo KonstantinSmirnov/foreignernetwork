@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
@@ -11,10 +12,19 @@ class User < ActiveRecord::Base
   has_many :posts, :class_name => "Post", :foreign_key => "user_id"
   has_many :records, :class_name => "Post", :foreign_key => "author_id"
 
+  # Country table is populated from seeds.rb, Cities table is populated by users
+  belongs_to :gender
+  belongs_to :relationship
+  belongs_to :country
+  belongs_to :city
+
+  accepts_nested_attributes_for :city
+
+
   validates :name, presence: true, length: { maximum: 25 }
+  validates :lastname, presence: true, length: { maximum:  25 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
-
 
   has_secure_password
 

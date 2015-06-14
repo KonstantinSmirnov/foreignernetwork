@@ -1,0 +1,149 @@
+<% provide(:title, 'Edit user') %>
+
+<div class="tabbable" id="tabs-738459" xmlns="http://www.w3.org/1999/html">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#common" data-toggle="tab">Personal info</a>
+    </li>
+    <li>
+      <a href="#languages" data-toggle="tab">Languages</a>
+    </li>
+    <li>
+      <a href="#interests" data-toggle="tab">Interests</a>
+    </li>
+    <li>
+      <a href="#notification" data-toggle="tab">Notifications</a>
+    </li>
+    <li>
+      <a href="#sequrity" data-toggle="tab">Sequrity</a>
+    </li>
+
+  </ul>
+  <br>
+  <div class="tab-content">
+    <div class="tab-pane active" id="common">
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-1">
+          <%= form_for @user, :url => update_userinfo_user_path(@user) do |f| %>
+            <dl class="dl-horizontal">
+
+              <div class="form-group">
+                <dt><%= f.label :name, "Name" %></dt>
+                <dd><%= f.text_field :name, class: "form-control" %></dd>
+              </div>
+
+              <div class="form-group">
+                    <dt><%= f.label :lastname, "Lastname" %></dt>
+                    <dd><%= f.text_field :lastname, class: "form-control" %></dd>
+              </div>
+
+              <div class="form-group">
+                    <dt><%= f.label :gender_id, "Gender" %></dt>
+                    <dd><%= f.collection_select :gender_id, Gender.order(:id),
+                                                :id, :gendername, {}, {class: "form-control"} %></dd>
+              </div>
+
+              <div class="form-group">
+                <dt><%= f.label :relationship_id, "Relationship" %></dt>
+                <dd><%= f.collection_select :relationship_id, Relationship.order(:id),
+                                            :id, :relationshipname, {}, {class: "form-control"} %></dd>
+              </div>
+
+              <div class="form-group">
+                <dt><%= f.label :birthdate, "Birthdate" %></dt>
+                <dd><%= f.date_select :birthdate, placeholder: "YYYY-MM-DD", class: "form-control" %></dd>
+              </div>
+
+              <div class="form-group">
+                <dt><%= f.label :countru_id, "Country" %></dt>
+
+                <dd><%= f.collection_select :country_id, Country.order(:id),
+                                            :id, :countryname, {}, {class: "form-control"} %></dd>
+
+              </div>
+
+              <div class="form-group">
+                <%= f.fields_for :city do |city| %>
+                    <dt><%= city.label :cityname, "City" %></dt>
+                    <dd><%= city.text_field :cityname, class: "form-control" %></dd>
+                <% end %>
+              </div>
+
+              <dd><%= f.submit "Save", class: "btn btn-primary center" %></dd>
+
+          <% end %>
+          </dl>
+        </div>
+      </div>
+
+
+
+
+    </div>
+    <div class="tab-pane" id="languages">
+
+      <hr>
+
+
+    </div>
+    <div class="tab-pane" id="interests">
+      <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-1">
+          <%= form_for @user, :url => update_name_user_path(@user) do |f| %>
+              <dl class="dl-horizontal">
+                <div class="form-group">
+                  <dt><%= f.label :login, "Activities" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "Interests" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "Favorite music" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "Favorite movies" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "Favorite books" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "Favorite games" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "Favorite quotes" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <div class="form-group">
+                  <dt><%= f.label :login, "About me" %></dt>
+                  <dd><%= f.text_area :login, :class => "form-control" %></dd>
+                </div>
+
+                <dd><%= f.submit "Save", class: "btn btn-primary center" %></dd>
+
+          <% end %>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

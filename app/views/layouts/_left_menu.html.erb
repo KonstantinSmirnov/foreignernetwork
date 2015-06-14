@@ -1,20 +1,16 @@
 
     <div class="list-group">
-
-      <%= link_to current_user, class: "list-group-item #{ "active" if params[:controller] == 'users' && @user == current_user }" do %>
-        <i class="fa fa-comment-o"></i>
+      <%= link_to current_user, class: "list-group-item #{ "active" if params[:controller] == 'users' && @user == current_user && params[:action] =='show' }" do %>
           My Profile
       <% end %>
 
       <%= link_to friends_path, class: "list-group-item #{ "active" if params[:controller] == 'friendships' && params[:action] == 'index' }" do %>
-          <i class="fa fa-comment-o"></i>
             My Friends
+          <% if friend_requests_received_quantity > 0 %>
+            <span class="badge alert-info"><%= friend_requests_received_quantity %></span>
+          <% end %>
       <% end %>
 
-
-      <a href="#" class="list-group-item">
-        <i class="fa fa-search"></i> My Guests <span class="badge">14</span>
-      </a>
       <a href="#" class="list-group-item">
         <i class="fa fa-user"></i> My Messages
       </a>
@@ -29,13 +25,28 @@
       </a>
 
       <%= link_to root_path, class: "list-group-item #{ "active" if params[:controller] == 'static_pages' && params[:action] == 'index'}" do %>
-          <i class="fa fa-comment-o"></i>
           My News
       <% end %>
 
-      <a href="#" class="list-group-item">
-        <i class="fa fa-envelope"></i> Settings
-      </a>
+      <%= link_to edit_user_path(@current_user), class: "list-group-item #{ "active" if params[:controller] == 'users' && (params[:action] == 'edit' or params[:action] == 'update_userinfo')}" do %>
+        Settings
+      <% end %>
+
     </div>
 
 
+    <div class="list-group">
+      <a href="#" class="list-group-item clearfix">
+        <span class="glyphicon glyphicon-paperclip"></span>
+        Nullam quis risus eget urna mollis ornare vel eu leo.
+        Vestibulum id ligula porta felis euismod semper.
+        Cras mattis consectetur purus sit amet fermentum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <span class="pull-right">
+      <button class="btn btn-xs btn-info">CCS</button>
+      <button class="btn btn-xs btn-warning">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </span>
+      </a>
+    </div>
