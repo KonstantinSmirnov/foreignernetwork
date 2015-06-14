@@ -10,8 +10,6 @@
 
 
 # ADD COUNTRIES
-Username.create(name: '')
-Userlastname.create(lastname: '')
 Relationship.create(relationshipname: '- not selected -')
 Relationship.create(relationshipname: 'In a relationship')
 Relationship.create(relationshipname: 'Engaged')
