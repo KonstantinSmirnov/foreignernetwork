@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614145945) do
+ActiveRecord::Schema.define(version: 20150628101513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20150614145945) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "recepient_id"
+    t.string   "message"
+    t.boolean  "read"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "text"
@@ -54,31 +63,6 @@ ActiveRecord::Schema.define(version: 20150614145945) do
     t.string   "relationshipname"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-  end
-
-  create_table "userinfos", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "country_id"
-    t.integer  "city_id"
-    t.integer  "username_id"
-    t.integer  "usersurname_id"
-    t.integer  "gender_id"
-    t.integer  "relationship_id"
-    t.datetime "birthday"
-  end
-
-  create_table "userlastnames", force: :cascade do |t|
-    t.string   "lastname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "usernames", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,8 +78,6 @@ ActiveRecord::Schema.define(version: 20150614145945) do
     t.datetime "avatar_updated_at"
     t.integer  "country_id"
     t.integer  "city_id"
-    t.integer  "username_id"
-    t.integer  "userlastname_id"
     t.integer  "gender_id"
     t.integer  "relationship_id"
     t.date     "birthdate"

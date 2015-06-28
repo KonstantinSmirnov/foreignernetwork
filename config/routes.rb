@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  #get 'messages/index'
+
   get 'settings/index'
 
   match '/signup',                to: 'users#new',            via: 'get'
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
       patch :update_userinfo
     end
     resources :posts
+    resources :messages
   end
   resources :sessions, only: [:new, :create, :destroy]
 
