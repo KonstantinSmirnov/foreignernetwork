@@ -11,21 +11,26 @@
           <% end %>
       <% end %>
 
-      <a href="#" class="list-group-item">
-        <i class="fa fa-user"></i> My Messages
-      </a>
-      <a href="#" class="list-group-item">
-        <i class="fa fa-folder-open-o"></i> My Fotos
-      </a>
-      <a href="#" class="list-group-item">
-        <i class="fa fa-bar-chart-o"></i> My Groups <span class="badge">14</span>
-      </a>
-      <a href="#" class="list-group-item">
-        <i class="fa fa-bar-chart-o"></i> My Events <span class="badge">14</span>
-      </a>
+      <%= link_to "#", class: "list-group-item" do %>
+        My messages
+      <% end %>
+
+
+      <%= link_to "#", class: "list-group-item" do %>
+        My fotos
+      <% end %>
+
+      <%= link_to "#", class: "list-group-item" do %>
+        My groups
+      <% end %>
+
+      <%= link_to "#", class: "list-group-item" do %>
+        My events
+      <% end %>
+
 
       <%= link_to root_path, class: "list-group-item #{ "active" if params[:controller] == 'static_pages' && params[:action] == 'index'}" do %>
-          My News
+          My news
       <% end %>
 
       <%= link_to edit_user_path(@current_user), class: "list-group-item #{ "active" if params[:controller] == 'users' && (params[:action] == 'edit' or params[:action] == 'update_userinfo')}" do %>
