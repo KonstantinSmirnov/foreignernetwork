@@ -48,10 +48,9 @@
           <% end %>
 
 
-
-      <a href="#" class="list-group-item">
-        Message
-      </a>
+      <%= link_to new_user_conversation_path(@user), class: "list-group-item" do %>
+          Send Message
+      <% end %>
 
           <% end %>
 

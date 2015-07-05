@@ -41,6 +41,9 @@ Rails.application.routes.draw do
       patch :update_userinfo
     end
     resources :posts
+    resources :conversations do
+      resources :messages
+    end
   end
   resources :sessions, only: [:new, :create, :destroy]
 

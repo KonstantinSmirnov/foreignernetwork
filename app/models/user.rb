@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts, :class_name => "Post", :foreign_key => "user_id"
   has_many :records, :class_name => "Post", :foreign_key => "author_id"
 
+  has_many :conversations, :foreign_key => :sender_id
+
   # Country table is populated from seeds.rb, Cities table is populated by users
   belongs_to :gender
   belongs_to :relationship
