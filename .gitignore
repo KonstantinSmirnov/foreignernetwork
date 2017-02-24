@@ -20,7 +20,7 @@
 doc/
 *.swp
 *~
-database.yml
+#database.yml
 
 
 # do not copy users images
